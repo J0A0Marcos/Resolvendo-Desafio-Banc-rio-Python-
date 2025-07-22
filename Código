@@ -1,0 +1,112 @@
+menu = """
+
+[d] Depositar
+
+[s] Sacar
+
+[e] Extrato
+
+[q] Sair
+
+=> """
+
+
+
+saldo = 0
+
+limite = 500
+
+extrato = []
+
+saques = 0
+
+LIMITE_SAQUES = 3
+
+
+
+while True:
+
+  opcao = input(menu)
+
+
+
+  if opcao == "d":
+
+    valor = float(input("Valor do depósito: "))
+
+    if valor > 0:
+
+      saldo += valor
+
+      extrato.append(f"Depósito: R$ {valor:.2f}")
+
+    else:
+
+      print("Erro: valor inválido.")
+
+
+
+  elif opcao == "s":
+
+    valor = float(input("Valor do saque: "))
+
+
+
+    if valor <= 0:
+
+      print("Erro: valor inválido.")
+
+    elif valor > saldo:
+
+      print("Erro: saldo insuficiente.")
+
+    elif valor > limite:
+
+      print("Erro: limite de saque excedido.")
+
+    elif saques >= LIMITE_SAQUES:
+
+      print("Erro: número de saques excedido.")
+
+    else:
+
+      saldo -= valor
+
+      extrato.append(f"Saque: R$ {valor:.2f}")
+
+      saques += 1
+
+
+
+  elif opcao == "e":
+
+    print("\n========= EXTRATO =========")
+
+    if extrato:
+
+      for linha in extrato:
+
+        print(linha)
+
+    else:
+
+      print("Não houve movimentações.")
+
+    print(f"Saldo: R$ {saldo:.2f}")
+
+    print("===========================\n")
+
+
+
+  elif opcao == "q":
+
+    print("Saindo do sistema. Até logo!")
+
+    break
+
+
+
+  else:
+
+    print("Opção inválida. Tente novamente.")
+
